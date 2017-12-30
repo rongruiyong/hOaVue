@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
     <el-row :gutter="20">
       <el-col :span="4">
@@ -65,6 +65,21 @@
     </el-row>
   </div>
 </template>
+<style>
+body, html{
+  padding: 0;
+  margin: 0;
+}
+.container{
+  border: 1px solid #ccc;
+  width: 1200px;
+  margin: 0 auto;
+}
+ .container .el-menu-item{
+    min-width: 95px;
+  }
+</style>
+
 
 <script>
   export default {

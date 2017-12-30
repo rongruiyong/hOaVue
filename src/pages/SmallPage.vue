@@ -36,63 +36,40 @@
         </el-table-column>
       </el-table-column>
     </el-table-column>
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="120">
+      <template slot-scope="scope">
+        <el-button
+          @click.native.prevent="deleteRow(scope.$index, tableData3)"
+          type="text"
+          size="small">
+          编辑
+        </el-button>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
 <script>
   export default {
+    methods: {
+      deleteRow(index, rows) {
+        console.log(rows);
+        rows.splice(index, 1)
+      }
+    },
+    created () {
+      const { axios } = this;
+      axios.get('/mock/smallpage.jsonp', {params: {name: 'tom'}}).then(res => {
+        const { data } = res;
+        this.tableData3 = data;
+      })
+    },
     data() {
       return {
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData3: [],
       }
     }
   }
